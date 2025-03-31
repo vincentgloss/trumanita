@@ -1,12 +1,12 @@
-# trumanita
-### Take control of your Truma - Using a Raspberry Pi &amp; LIN adapter
+# <p align="center">Truman - **I**ntelligent **T**ruma **A**doption
+### <p align="center">Take control of your Truma - Using a Raspberry Pi &amp; LIN adapter
 
 
-This binary eliminates the need for the original control panel or any further devices between your RPI and your Truma (apart from the LIN adapter).
+<p align="center">This binary eliminates the need for the original control panel or any further devices between your RPI and your Truma (apart from the LIN adapter).
 
-It connects to a MQTT broker and will report the current status of the heater.
+<p align="center">It connects to a MQTT broker and will report the current status of the heater.
 
-Control commands are also **sent** to the heater using MQTT.
+<p align="center">Control commands are also **sent** to the heater using MQTT.
 
 # Installing:
 
@@ -154,4 +154,8 @@ For example, setting `energymix` to `electric` (which requires 230V) and `mode`/
 
 | Device                  | Status |
 |-------------------------|--------|
-| Truma Combi 4 E          |   ✅   |
+| Truma Combi 4 E         |   ✅   |
+
+
+---
+<p align="center">Truma ❤️ Anita

@@ -6,14 +6,14 @@
 
 <p align="center">It connects to a MQTT broker and will report the current status of the heater.
 
-<p align="center">Control commands are also **sent** to the heater using MQTT.
+<p align="center">Control commands are also sent to the heater using MQTT.
 
 # Installing:
 
 Make sure you have the needed packages installed:
 ```sudo apt update && sudo apt install -y libmosquitto1 libssl3 libstdc++6```
 
-Enable the serial UART port port in the ```sudo raspi-config```  → Interface Options → Serial
+Enable the serial UART port in the ```sudo raspi-config```  → Interface Options → Serial
 
 Make sure your user is added to the dialout group: ```sudo usermod -aG dialout $USER```
 

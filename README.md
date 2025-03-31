@@ -155,9 +155,9 @@ All seven values have to be set in the payload, see possible values in the table
 
 ### 🔧 Example Commands (mosquitto_pub/sub)
 
-Send a config:
+Send a config (heter on, fully electric (900W, needs 230V connection!), ambient temp 25°C):
 ``` 
-mosquitto_pub -h localhost -t truma/control/truma_config -m '{"heater":"on","boiler":"off","temp":25,"fan":"low","energymix":"gas","mode":"gas","mode2":"gas"}'
+mosquitto_pub -h localhost -t truma/control/truma_config -m '{"heater":"on","boiler":"off","temp":25,"fan":"low","energymix":"electric","mode":"mix1","mode2":"electric"}'
 ```
 Subscribe to the report topic:
 ```

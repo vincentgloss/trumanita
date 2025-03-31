@@ -8,6 +8,25 @@
 
 <p align="center">Control commands are also sent to the heater using MQTT.
 
+# Disclaimer
+
+This project is a hobbyist effort and is not affiliated with or endorsed by Truma in any way.
+All trademarks and brand names are the property of their respective owners.
+
+You're free to use, modify, and share this software under the terms of the GNU General Public License v3.0 (GPL-3.0).
+
+That said, please keep in mind:
+
+- You’re using this at your own risk.
+
+- It might void your warranty if you hook it up to real hardware.
+
+- We do our best, but there's no guarantee it won’t misbehave, break something, or confuse your heater.
+
+- Always make sure you know what you're doing — and when in doubt, unplug it!
+
+Have fun, hack responsibly, and feel free to contribute!
+
 # Installing:
 
 Make sure you have the needed packages installed:
@@ -68,21 +87,71 @@ Stop the process with ```sudo pkill -f LINsenddirect``` if needed/desired.
 
 Default topic:  **truma/control/truma_config**
 
-**Payload example:**
-```json
-{
-  "boiler": "off",
-  "energymix": "electric",
-  "fan": "medium",
-  "heater": "off",
-  "mode": "mix1",
-  "mode2": "electric",
-  "temp": 29
-}
-```
 **Required fields:**  
 `heater`, `boiler`, `temp`, `fan`, `energymix`, `mode`, `mode2`
 
+
+### 📦 Payload Examples
+
+<table>
+<tr>
+  <td>
+
+<strong>Boiler eco + Heater on Gas only</strong>
+
+```json
+{
+  "boiler": "eco",
+  "energymix": "gas",
+  "fan": "eco",
+  "heater": "on",
+  "mode": "gas",
+  "mode2": "gas",
+  "temp": 22
+}
+```
+
+  </td>
+  <td>
+
+<strong>Boiler Hot electric only</strong>
+
+```json
+{
+  "boiler": "hot",
+  "energymix": "electric",
+  "fan": 5,
+  "heater": "off",
+  "mode": "mix2",
+  "mode2": "electric",
+  "temp": 25
+}
+```
+
+  </td>
+  <td>
+
+<strong>Boiler boost + Heater on</strong>
+
+```json
+{
+  "boiler": "boost",
+  "energymix": "mix1",
+  "fan": "high",
+  "heater": "on",
+  "mode": "mix1",
+  "mode2": "gas",
+  "temp": 29
+}
+```
+
+  </td>
+</tr>
+</table>
+
+**Please pay special attention to the three mode settings: `energymix`, `mode`, and `mode2`. Refer to your heater’s manual to understand how different combinations of these settings affect its behavior.**
+
+All seven values have to be set in the payload, see possible values in the table below.
 
 ### 🔧 Example Commands (mosquitto_pub/sub)
 
@@ -101,8 +170,8 @@ mosquitto_sub -h localhost -t truma/report/#
 
 | Topic                    | Accepted Values                                              |
 |--------------------------|--------------------------------------------------------------|
-| `truma/control/boiler`   | `off`, `eco`, `hot`, `boost`                                 |
-| `truma/control/energymix`| `gas`, `electric`, `mix1`, `mix2`                     |
+| `truma/control/boiler`   | `off`, `eco` (40°C), `hot` (60°C), `boost`                   |
+| `truma/control/energymix`| `gas`, `electric`, `mix1`, `mix2`                            |
 | `truma/control/fan`      | `off`, `eco`, `low`, `medium`, `high`, `max`, or `0–10`      |
 | `truma/control/heater`   | `on`, `true`, `1` or `off`, `false`, `0`                     |
 | `truma/control/mode`     | `gas`, `mix1` (900W), `mix2` (1800W)                         |

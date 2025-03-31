@@ -135,7 +135,7 @@ truma/report/...
 | `heating_state`  | String – current heater status                          |
 | `boiler_mode`    | String – current boiler mode                            |
 | `error_state`    | String – e.g., `Normal`, `Error`                        |
-| `truma_config`   | JSON string – echo of the last applied configuration    |
+| `truma_config`   | JSON string – echo of the last applied configuration (truma_config only)    |
 
 
 ## ⚠️ Known Issues

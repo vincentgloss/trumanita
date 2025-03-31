@@ -2,7 +2,7 @@
 ### Take control of your Truma - Using a Raspberry Pi &amp; LIN adapter
 
 
-This script eliminates the need for the original control panel.
+This binary eliminates the need for the original control panel or any further devices between your RPI and your Truma (apart from the LIN adapter).
 
 It connects to a MQTT broker and will report the current status of the heater.
 
@@ -12,6 +12,12 @@ Control commands are also **sent** to the heater using MQTT.
 
 Make sure you have the needed packages installed:
 ```sudo apt update && sudo apt install -y libmosquitto1 libssl3 libstdc++6```
+
+Enable the serial UART port port in the ```sudo raspi-config```  → Interface Options → Serial
+
+Make sure your user is added to the dialout group: ```sudo usermod -aG dialout $USER```
+
+---
 
 An .env file is mandatory for the script to start, it could look like this:
 
@@ -40,15 +46,19 @@ UART_BAUDRATE=9600
 
 You can use the example .env file provided in the repo, or create your own. To quickly get started, run the following command to download both the .env and the precompiled binary:
 
-```wget -O .env https://raw.githubusercontent.com/vincentgloss/trumanita/main/.env && wget -O .LINsenddirect https://raw.githubusercontent.com/vincentgloss/trumanita/main/LINsenddirect```
+```wget -O .env https://raw.githubusercontent.com/vincentgloss/trumanita/main/.env && wget -O LINsenddirect https://raw.githubusercontent.com/vincentgloss/trumanita/main/LINsenddirect```
 
 Then make the binary executable: ```chmod +x LINsenddirect```
 
 # Usage:
 
 Start the binary with ```./LINsenddirect``` or if you want a different .env file use ```ENV_FILE=myCustom.env ./LINsenddirect```
-
 Add flags ```-d``` or ```--debug``` for more output.
+
+You might hear some relays clicking in the Truma heater when the binary is initialized and connection is established.
+During runtime mqtt reports should come in every 10s (or whatever you set the publish interval to).
+
+It is advised to keep the original control panel around, as the binary does not state any error codes, only that (if) an error has ocurred. You'll need to original panel to read the error code.
 
 Stop the process with ```sudo pkill -f LINsenddirect``` if needed/desired.
 
@@ -92,7 +102,7 @@ mosquitto_sub -h localhost -t truma/report/#
 | Topic                    | Accepted Values                                              |
 |--------------------------|--------------------------------------------------------------|
 | `truma/control/boiler`   | `off`, `eco`, `hot`, `boost`                                 |
-| `truma/control/energymix`| `gas`, `electric`, `mix`, `mix1`, `mix2`                     |
+| `truma/control/energymix`| `gas`, `electric`, `mix1`, `mix2`                     |
 | `truma/control/fan`      | `off`, `eco`, `low`, `medium`, `high`, `max`, or `0–10`      |
 | `truma/control/heater`   | `on`, `true`, `1` or `off`, `false`, `0`                     |
 | `truma/control/mode`     | `gas`, `mix1` (900W), `mix2` (1800W)                         |
@@ -144,4 +154,4 @@ For example, setting `energymix` to `electric` (which requires 230V) and `mode`/
 
 | Device                  | Status |
 |-------------------------|--------|
-| Truma Kombi 4           |   ✅   |
+| Truma Combi 4 E          |   ✅   |

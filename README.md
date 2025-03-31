@@ -77,7 +77,7 @@ Add flags ```-d``` or ```--debug``` for more output.
 You might hear some relays clicking in the Truma heater when the binary is initialized and connection is established.
 During runtime mqtt reports should come in every 10s (or whatever you set the publish interval to).
 
-It is advised to keep the original control panel around, as the binary does not state any error codes, only that (if) an error has ocurred. You'll need to original panel to read the error code.
+It is advised to keep the original control panel around, as the binary does not state any error codes, only that (if) an error has ocurred. You'll need to refer to the original panel to read the error code.
 
 Stop the process with ```sudo pkill -f LINsenddirect``` if needed/desired.
 
@@ -87,7 +87,7 @@ Stop the process with ```sudo pkill -f LINsenddirect``` if needed/desired.
 
 Default topic:  **truma/control/truma_config**
 
-**Required fields:**  
+**Required fields:**
 `heater`, `boiler`, `temp`, `fan`, `energymix`, `mode`, `mode2`
 
 

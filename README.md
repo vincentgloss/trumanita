@@ -224,6 +224,7 @@ For example, setting `energymix` to `electric` (which requires 230V) and `mode`/
 | Device                  | Status |
 |-------------------------|--------|
 | Truma Combi 4 E         |   ✅   |
+| Truma Combi 6 E         |   ✅   |
 
 
 ---
